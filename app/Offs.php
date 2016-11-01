@@ -10,8 +10,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Offs extends DynamoDbModel
 {
     protected $table = 'Offers';
-    protected $fillable = ['OfferID', 'Active', 'Avatar', 'Busy', 'CatID', 'Contact', 'Cost', 'Created', 'Desc', 'Images', 'Name','Updated','UserID'];
-
+//    protected $fillable = ['OfferID', 'Active', 'Avatar', 'Busy', 'CatID', 'Contact', 'Cost', 'Created', 'Desc',  'Images', 'Name','Updated','UserID'];
+    protected $fillable = ['OfferID','Active','Avatar','Busy','CatID','Contact','Cost','Created','Desc','Images','Name','Updated','UserID'];
     protected $primaryKey = 'OfferID';
 //    protected $compositeKey = ['OfferID', 'UserID', 'Created'];
 }

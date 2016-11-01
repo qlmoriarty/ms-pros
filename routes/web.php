@@ -31,15 +31,9 @@ Route::get('password/reset/{token}', 'HomeController@null');
 Route::post('password/reset', 'HomeController@null');
 
 
-
-
 Route::resource('category', 'CategoryController');
 Route::get('/profile/ajax', 'ProfileController@ajax');
 Route::resource('profile', 'ProfileController');
-
-
-
-
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['auth.admin']], function () {
@@ -56,9 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
 //        Route::resource('offer', 'OffsController');
 
         Route::get('offer/{id}/delete', 'OfController@del');
-        Route::resource('off', 'OfController');
+        Route::resource('offer', 'OfController');
 
         Route::get('/payments/ajax', 'PaymentsController@ajax');
+        Route::post('/payments/search', 'PaymentsController@search');
 
         Route::resource('payments', 'PaymentsController');
 

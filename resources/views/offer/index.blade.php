@@ -10,7 +10,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
-                    <a href="{{ url('/off/create') }}" class="btn btn-default btn-sm">New Offer</a>
+                    <a href="{{ url('/offer/create') }}" class="btn btn-default btn-sm">New Offer</a>
                 </div>
             </div>
             <div class="box-body">
@@ -24,9 +24,10 @@
                     <thead>
                     <tr role="row">
                         <th>Avatar</th>
-                        {{--<th>CategoryID</th>--}}
+                        <th>CategoryID</th>
                         <th>User</th>
                         <th>Offer Name</th>
+                        <th>Description</th>
                         <th>Active</th>
                         <th>Cost</th>
                         <th>Action</th>
@@ -39,9 +40,10 @@
 
                         <tr role="row" class="odd">
                             <td class="sorting_1" > <a href="/payments/{{ $d->UserID }}"><img src="{{ $d->Avatar }}" alt="" style="width:200px; height:auto;"></a>  </td>
-                            {{--<td>{{ $d->CatID }} </td>--}}
+                            <td>{{ $d->CatID }} </td>
                             <td> {{ $d->UserID }}</td>
                             <td> {{$d->Name}}</td>
+                            <td> {{$d->Desc}}</td>
                             <td>
                                 <?php
                                     if($d->Active == 1)
@@ -63,8 +65,8 @@
                             <td>
 
                                 <div class="control">
-                                    <a href="/off/{{$d->OfferID}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></a>
-                                    &nbsp;<a href="/off/{{$d->OfferID}}/delete" class="btn btn-danger btn-sm">
+                                    <a href="/offer/{{$d->OfferID}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                    &nbsp;<a href="/offer/{{$d->OfferID}}/delete" class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </a>
                                 </div>

@@ -34,6 +34,20 @@ class PaymentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function search(Request $request)
+    {
+        $a = strtotime($request->input('Date_From')*1000);
+        $b = strtotime($request->input('Date_To')*1000);
+        $model = new Payments();
+
+        // $model->where(['key' => 'key value']);
+        // Chainable for 'AND'. 'OR' is not supported.
+        // $model->where('foo', 'bar')
+         $model->where(['DateAdd' => 1477721394620])->get();
+
+        return $model;
+    }
+
     public function index()
     {
 
@@ -43,11 +57,8 @@ class PaymentsController extends Controller
         return view('payments.index', compact('Data'));
     }
 
-    
-      
 
-
-        public function show($id)
+    public function show($id)
         {
 //
 //            $Payments = Payments::find($id);
@@ -62,7 +73,7 @@ class PaymentsController extends Controller
             return view('payments.single', compact('Payments'));
         }
 
- public function ajax()
+    public function ajax()
     {
 
         $Data = Payments::all();
@@ -86,4 +97,6 @@ class PaymentsController extends Controller
             })->make(true);
 
     }
+
+   
 }

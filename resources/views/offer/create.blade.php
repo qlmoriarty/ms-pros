@@ -42,7 +42,7 @@
                         <div class="form-group{{ $errors->has('Active') ? ' has-error' : '' }}">
                             {!! Form::label('Active', 'Active', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::select('Active', $active_list, null, ['class' => 'form-control']) !!}
+                                {!! Form::select('Active', [ 1 => 'True', 0 => 'False' ], null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('Active'))
                                     <span class="help-block">
                                 <strong>{{ $errors->first('Active') }}</strong>
