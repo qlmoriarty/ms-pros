@@ -9,13 +9,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@yield('title')</div>
                     <div class="panel-body">
-                        {!! Form::open(['url' => url('/offer'), 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['url' => url('/pushes'), 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
 
-                        <div class="form-group{{ $errors->has('UserID') ? ' has-error' : '' }}">
-                            {!! Form::label('UserID', 'For User(email)', ['class' => 'col-md-4 control-label']) !!}
+                        <div class="form-group{{ $errors->has('Title') ? ' has-error' : '' }}">
+                            {!! Form::label('Title', 'Title:', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('UserID', null, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
-                                @if ($errors->has('UserID'))
+                                {!! Form::text('Title', null, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
+                                @if ($errors->has('Title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('UserID') }}</strong>
                                     </span>
@@ -23,17 +23,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Active') ? ' has-error' : '' }}">
-                            {!! Form::label('Active', 'Active', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::select('Active', $active_list, null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('Active'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('Active') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
                             {!! Form::label('Avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
@@ -47,27 +36,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Name') ? ' has-error' : '' }}">
-                            {!! Form::label('Name', 'Offer Name', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('Name', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('Name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                    
-
-                        <div class="form-group{{ $errors->has('Description') ? ' has-error' : '' }}">
-                            {!! Form::label('Description', 'Description', ['class' => 'col-md-4 control-label']) !!}
+                        <div class="form-group{{ $errors->has('Text') ? ' has-error' : '' }}">
+                            {!! Form::label('Text', 'News Description', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::textarea('Description', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('Description'))
+                                {!! Form::textarea('Text', null, ['class' => 'form-control']) !!}
+                                @if ($errors->has('Text'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Description') }}</strong>
+                                        <strong>{{ $errors->first('Text') }}</strong>
                                     </span>
                                 @endif
                             </div>

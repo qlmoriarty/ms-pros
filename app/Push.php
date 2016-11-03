@@ -12,4 +12,6 @@ class Push extends DynamoDbModel
     protected $table = 'News';
     protected $fillable = ['NewsID', 'DateAdd', 'ImageUrl', 'Text', 'Title'];
     protected $primaryKey = 'NewsID';
+
+    protected $compositeKey = ['NewsID', 'DateAdd'];
 }

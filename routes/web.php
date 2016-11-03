@@ -61,7 +61,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('user', 'UserController');
 
 
-        Route::get('/pushes/ajax', 'PushController@ajax');
+
+        Route::get('/pushes/pushall', 'PushController@pushall');
+//        Route::get('/pushes/push', 'PushController@pushget');
+//        Route::post('/pushes/push/new', 'PushController@push');
+        Route::get('pushes/{id}/{date}/delete', 'PushController@del');
         Route::resource('pushes', 'PushController');
 
 //        Route::get('settings', 'SettingController@create');

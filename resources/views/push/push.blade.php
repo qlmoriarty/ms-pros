@@ -9,12 +9,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@yield('title')</div>
                     <div class="panel-body">
-                        {!! Form::open(['action' => ['PushController@update', $id,$off_get_data], 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['action' => ['PushController@push'], 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
 
                         <div class="form-group{{ $errors->has('Title') ? ' has-error' : '' }}">
                             {!! Form::label('Title', 'Title:', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('Title', $off_get_data->NxewsID, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
+                                {!! Form::text('Title', null, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
                                 @if ($errors->has('Title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('UserID') }}</strong>
@@ -25,7 +25,7 @@
 
 
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
-                            {!! Form::label('Avatar', 'Image', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('Avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::file('Avatar', ['class' => 'form-control']) !!}
                                 @if ($errors->has('Avatar'))
@@ -40,7 +40,7 @@
                         <div class="form-group{{ $errors->has('Text') ? ' has-error' : '' }}">
                             {!! Form::label('Text', 'News Description', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::textarea('Text', $off_get_data->Text, ['class' => 'form-control']) !!}
+                                {!! Form::textarea('Text',null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('Text'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('Text') }}</strong>

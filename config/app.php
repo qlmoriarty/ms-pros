@@ -166,6 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Aws\Laravel\AwsServiceProvider::class,
+
 
         //
 
@@ -238,6 +240,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'User' => \App\User::class,
+        'AWS' => Aws\Laravel\AwsFacade::class,
 
     ],
 
