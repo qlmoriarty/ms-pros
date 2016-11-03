@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Category :: List')
+@section('title', 'Categories')
 
 @section('content')
     <section class="content">
@@ -9,7 +9,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
-                    <a href="{{ url('/category/create') }}" class="btn btn-default btn-sm">New</a>
+                    <a href="{{ url('/category/create') }}" class="btn btn-default btn-sm">New Category</a>
                 </div>
             </div>
             <div class="box-body">
@@ -21,8 +21,8 @@
                 <table id="user_load" class="table table-clapped table-striped display dataTable no-footer">
                     <thead>
                     <tr role="row">
-                        <th>ID</th>
-                        <th>Avatar</th>
+                        <th>ID -#</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Active</th>
                         <th>Action</th>

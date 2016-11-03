@@ -13,6 +13,7 @@ class Payments extends DynamoDbModel
     protected $table = 'Payments';
     protected $fillable = ['UserID', 'DateAdd', 'Subscribe', 'Value'];
     protected $primaryKey = 'UserID';
+//    protected $compositeKey = ['NewsID', 'DateAdd'];
 
     protected $dynamoDbIndexKeys = [
         'count_index' => 'count',

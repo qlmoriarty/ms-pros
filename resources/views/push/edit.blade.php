@@ -9,12 +9,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@yield('title')</div>
                     <div class="panel-body">
-                        {!! Form::open(['action' => ['PushController@update', $id,$off_get_data], 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['action' => ['PushController@updatee', $id,$date,$off_get_data], 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true]) !!}
 
                         <div class="form-group{{ $errors->has('Title') ? ' has-error' : '' }}">
                             {!! Form::label('Title', 'Title:', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('Title', $off_get_data->NxewsID, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
+                                {!! Form::text('Title', $off_get_data->Title, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
                                 @if ($errors->has('Title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('UserID') }}</strong>

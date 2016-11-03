@@ -39,7 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['auth.admin']], function () {
 
 
-
         Route::get('/message/ajax', 'MessageController@ajax');
         Route::post('/message/{id}/show_message', 'MessageController@show_message');
         Route::resource('message', 'MessageController');
@@ -61,12 +60,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('user', 'UserController');
 
 
-
+//        Route::match(['get', 'post'], '/', function () ;
         Route::get('/pushes/pushall', 'PushController@pushall');
 //        Route::get('/pushes/push', 'PushController@pushget');
 //        Route::post('/pushes/push/new', 'PushController@push');
         Route::get('pushes/{id}/{date}/delete', 'PushController@del');
+
+        Route::get('pushes/{id}/{date}/edit', 'PushController@edit');
+        Route::patch('pushes/{id}/{date}/edit', 'PushController@updatee');
+//        Route::post('pushes/{id}/{date}/edit', 'PushController@update');
+
         Route::resource('pushes', 'PushController');
+        Route::get('pushes', 'PushController@index');
 
 //        Route::get('settings', 'SettingController@create');
         Route::resource('setting', 'SettingController');

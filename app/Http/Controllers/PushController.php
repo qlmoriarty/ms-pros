@@ -76,27 +76,19 @@ class PushController extends Controller
         return redirect('/pushes')->with('status', 'News was added!');
     }
 
-    public function edit($id)
+    public function edit($id,$date)
     {
-//        public function edit($id,$DATE => VIEWха)
-        $DATE = '2016-11-02 13:38:45';
         $off_get_data = new Push();
-        $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $DATE]);
-//        $off_get_data->find((string)$id);
-//        return var_dump($off_get_data);
-//        $off_get_data->where(['NewsID' => $id]);
-//        return dd($off_get_data);
-        return view('push.edit', compact('id','off_get_data'));
+        $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $date]);
+        return view('push.edit', compact('id','off_get_data', 'date'));
     }
-    public function update($id, Request $request)
+    public function updatee($id,$date, \Illuminate\Http\Request $request)
     {
-
+//        $date = $this->date;
         $off_get_data = new Push();
-//        $off_get_data->find(['NewsID' => $id, 'DateAdd' => '2016-11-02 13:38:45']);
+        $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $date]);
 
-        $Offer = new Push();
-
-
+        $Push = new Push();
 
         if (!empty($request->file('Avatar'))) {
             $Avatar = 'data/avatars/' . $id;
@@ -104,14 +96,14 @@ class PushController extends Controller
             Storage::disk('s3')->setVisibility($path, 'public');
             $Avatar = $this->http_avatar . $path;
         } else {
-            $Avatar =  $off_get_data->Avatar;
+            $Avatar =  $off_get_data->ImageUrl;
         }
 //
-        $NewsId = $id;
+        $NewsId =  $off_get_data->NewsID;
 //        $Offer->save();
-        $Offer->update([
+        $Push->update([
             'NewsID' => (String)$NewsId,
-            'DateAdd' => (String)Carbon::now()->format('Y-m-d H:i:s'),
+            'DateAdd' => (String)$date,
             'ImageUrl' => $Avatar,
 //        'ImageUrl' => [],
             'Text' => (String)$request->input('Text'),
@@ -123,20 +115,48 @@ class PushController extends Controller
 //        return redirect('ya.ru');
     }
 
-    public function del($id)
+    public function del($id, $date)
     {
-        $offer = new Push();
-        $offer->find($id);
-        return dd($offer);
-//        $offer->delete();
-//        return redirect('/pushes');
+//            $date = $date;
+//            return dd($date,$id);
+//        $DATE = '2016-11-02 13:38:45';
+//
+        $off_get_data = new Push();
+        $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $date]);
+////        return dd($off_get_data);
+        $off_get_data->delete();
+        return redirect('/pushes')->with('status', 'News was deleted');;
     }
     public function pushall()
     {
-//        $s3 = \AWS::make('aws')->createClient('s3');
-        $s3 = \Aws\Sdk::VERSION;
-        $s3 = \Aws\Sns\SnsClient::
-        return $s3;
+        $s3 = new Aws\Sns\SnsClient(
+            [
+                'region' => 'us-east-1',
+                'version' => 'latest',
+                'credentials' => [
+                    'key'    => 'AKIAIZLXN4UVCLF7XQBQ',
+                    'secret' => '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',
+                ],
+                'scheme' => 'http',
+            ]
+        ) ;
+
+//        $result = $s3->publish(array(
+//            'TopicArn' => 'arn:aws:sns:us-east-1:152914134265:MS_Pros_News',
+//            'Message' => 'TEST TEXT',
+//            'Subject' => 'TITLE'));
+
+        $result = $s3->publish(array(
+            'TopicArn' => 'arn:aws:sns:us-east-1:152914134265:MS_Pros_News',
+            'Message' => 'TEST TEXT',
+            'Subject' => 'TITLE',
+            'MessageStructure' => 'array',
+            'MessageAttributes' => array(
+                'URL' => array(
+                    'DataType' => 'String',
+                    'StringValue' => 'URL TEST'))));
+
+        return redirect('/pushes')->with('status', 'Push was Sent');;
     }
 //    public function pushget()
 //    {

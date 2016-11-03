@@ -46,9 +46,9 @@
                                      <a href="/pushes/pushall" class="btn btn-info btn-sm">
                                          <i class="fa  fa-paper-plane-o" aria-hidden="true"></i>
                                      </a>
-                                     <a href="/pushes/push" class="btn btn-info btn-sm">
-                                         <i class="fa  fa-at" aria-hidden="true"></i>
-                                     </a>
+                                     {{--<a href="/pushes/push" class="btn btn-info btn-sm">--}}
+                                         {{--<i class="fa  fa-at" aria-hidden="true"></i>--}}
+                                     {{--</a>--}}
                                      <a href="/pushes/{{$d->NewsID}}/{{$d->DateAdd}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></a>
                                      &nbsp;<a href="/pushes/{{$d->NewsID}}/{{$d->DateAdd}}/delete" class="btn btn-danger btn-sm">
                                          <i class="fa fa-trash" aria-hidden="true"></i>
