@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Offer :: List')
+@section('title', 'Pros')
 
 @section('content')
     <section class="content">
@@ -10,7 +10,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
-                    <a href="{{ url('/offer/create') }}" class="btn btn-default btn-sm">New Offer</a>
+                    <a href="{{ url('/offer/create') }}" class="btn btn-default btn-sm">New Pros</a>
                 </div>
             </div>
             <div class="box-body">
@@ -23,10 +23,12 @@
                 <table id="offer_load" class="table table-clapped table-striped display dataTable no-footer">
                     <thead>
                     <tr role="row">
-                        <th>Avatar</th>
+                        <th>Image</th>
                         <th>CategoryID</th>
-                        <th>User</th>
-                        <th>Offer Name</th>
+                        <th>User email</th>
+                        <th>Name</th>
+                        <th>Busy</th>
+                        <th>Contact</th>
                         <th>Description</th>
                         <th>Active</th>
                         <th>Cost</th>
@@ -39,10 +41,12 @@
                     @foreach ( $Data as $d)
 
                         <tr role="row" class="odd">
-                            <td class="sorting_1" > <a href="/payments/{{ $d->UserID }}"><img src="{{ $d->Avatar }}" alt="" style="width:200px; height:auto;"></a>  </td>
+                            <td class="sorting_1" > <img src="{{ $d->Avatar }}" alt="" style="width:200px; height:auto;">  </td>
                             <td>{{ $d->CatID }} </td>
                             <td> {{ $d->UserID }}</td>
                             <td> {{$d->Name}}</td>
+                            <td>{{$d->Busy}}</td>
+                            <td>{{$d->Contact}}</td>
                             <td> {{$d->Desc}}</td>
                             <td>
                                 <?php

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profiles :: List')
+@section('title', 'Users Profiles')
 
 @section('content')
     <section class="content">
@@ -10,7 +10,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
-                    <a href="{{ url('/profile/create') }}" class="btn btn-default btn-sm">New</a>
+                    <a href="{{ url('/profile/create') }}" class="btn btn-default btn-sm"> New Profile</a>
                 </div>
             </div>
             <div class="box-body">
@@ -23,7 +23,7 @@
                 <table id="profile_load" class="table table-clapped table-striped display dataTable no-footer">
                     <thead>
                     <tr role="row">
-                        <th>Avatar</th>
+                        <th>Image</th>
                         <th>NickName</th>
                         <th>Email</th>
                         <th>Active</th>

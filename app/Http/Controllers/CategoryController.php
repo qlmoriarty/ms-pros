@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
             $control = [];
 
-            $control[] = '<a href="' . url('/category/create' . '?' . http_build_query(['SubCategoryIs' => true, 'ParentCatID' => $item['CatID']])) . '" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>';
+            $control[] = '<a href="' . url('/category/create' . '?' . http_build_query(['SubCategoryIs' => true, 'ParentCatID' => $item['CatID']])) . '" class="btn btn-success btn-sm">Add sub </a>';
             $control[] = '<a href="' . url('/category/' . $item['CatID'] . '/edit') . '" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>';
             $control[] = '<a href="#" class="btn btn-danger btn-sm item_destroy_category" data-url="' . url('/category/' . $item['CatID']) . '" data-CatID="' . $item['CatID'] . '"><i class="fa fa-trash"></i></a>';
 

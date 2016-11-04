@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Message :: List')
+@section('title', 'Messages')
 
 @section('content')
     <section class="content">
@@ -23,7 +23,7 @@
                 <table id="message_load" class="table table-clapped table-striped display dataTable no-footer">
                     <thead>
                     <tr role="row">
-                        <th>Avatar</th>
+                        <th>Image</th>
                         <th>NickName</th>
                         <th>Email</th>
                         <th>Have unread</th>

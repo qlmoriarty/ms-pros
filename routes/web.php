@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('pushes/{id}/{date}/delete', 'PushController@del');
 
         Route::get('pushes/{id}/{date}/edit', 'PushController@edit');
+
+        Route::get('pushes/{id}/{date}/pushall', 'PushController@pushall');
+
         Route::patch('pushes/{id}/{date}/edit', 'PushController@updatee');
 //        Route::post('pushes/{id}/{date}/edit', 'PushController@update');
 
@@ -74,6 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('pushes', 'PushController@index');
 
 //        Route::get('settings', 'SettingController@create');
+        Route::get('setting/{id}/delete', 'SettingController@del');
         Route::resource('setting', 'SettingController');
     });
 });

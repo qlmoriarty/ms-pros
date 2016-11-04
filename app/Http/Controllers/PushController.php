@@ -127,8 +127,14 @@ class PushController extends Controller
         $off_get_data->delete();
         return redirect('/pushes')->with('status', 'News was deleted');;
     }
-    public function pushall()
+    public function pushall( $id, $date)
     {
+        $off_get_data = new Push();
+        $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $date]);
+
+
+
+        // Добавить вывод в роуты id
         $s3 = new Aws\Sns\SnsClient(
             [
                 'region' => 'us-east-1',
@@ -141,37 +147,31 @@ class PushController extends Controller
             ]
         ) ;
 
-//        $result = $s3->publish(array(
-//            'TopicArn' => 'arn:aws:sns:us-east-1:152914134265:MS_Pros_News',
-//            'Message' => 'TEST TEXT',
-//            'Subject' => 'TITLE'));
+        $foo = new Push();
+        $foo->title =  $off_get_data->Title;
+        $foo->msg =  $off_get_data->Text;
+        $foo->image = $off_get_data->ImageUrl;
+        $json = json_encode($foo);
 
         $result = $s3->publish(array(
             'TopicArn' => 'arn:aws:sns:us-east-1:152914134265:MS_Pros_News',
-            'Message' => 'TEST TEXT',
-            'Subject' => 'TITLE',
+            'Message' => (string) $json,
+            'Subject' => (string) $off_get_data->Text,
             'MessageStructure' => 'array',
             'MessageAttributes' => array(
                 'URL' => array(
                     'DataType' => 'String',
                     'StringValue' => 'URL TEST'))));
 
+
+
+
+
+
+//        return  $json;
+
         return redirect('/pushes')->with('status', 'Push was Sent');;
     }
-//    public function pushget()
-//    {
-//        return view('push.push');
-//    }
-//    public function push(Request $request)
-//    {
-//        $data = [
-//            'text' => $request->input('Text'),
-//            'data' =>$request->input('Text')
-//
-//        ];
-//        return $data;
-//    }
-
 
 
 

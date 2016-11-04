@@ -79,6 +79,14 @@ public function store(Request $request)
         {
             $Active = false;
         }
+    if ($request->input('Busy') == 'true')
+    {
+        $Busy = true; 
+    }
+    else
+    {
+        $Busy = false;
+    }
 
 //    $LastId = LastId::get(Offs::class);
 //      $UserID = $LastId->id;;
@@ -105,7 +113,7 @@ public function store(Request $request)
             'OfferID' => $OfferID,
             'Active' => $Active,
             'Avatar' => $Avatar,
-            'Busy' => false,
+            'Busy' => $Busy,
             'CarID' => $request->input('CatID'),
             'Contact' => $request->input('Contacts'),
             'Cost' => $request->input('Cost'),

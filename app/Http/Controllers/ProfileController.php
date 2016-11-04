@@ -53,7 +53,7 @@ class ProfileController extends Controller
             })
             ->addColumn('control', function ($data) {
                 $control = [];
-                $control[] = '<a href="' . url('/payments/' . $data->UserID . '') . '" class="btn btn-info btn-sm"><i class="fa fa-bank "></i></a>';
+                $control[] = '<a href="' . url('/payments/' . $data->UserID . '') . '" class="btn btn-info btn-sm"><i class="fa fa-dollar "></i></a>';
                 $control[] = '<a href="' . url('/profile/' . $data->UserID . '/edit') . '" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>';
                 $control[] = '<a href="#" class="btn btn-danger btn-sm item_destroy" data-url="' . url('/profile/' . $data->UserID) . '"><i class="fa fa-trash"></i></a>';
                 $control = implode('&#160;', $control);
@@ -115,6 +115,8 @@ class ProfileController extends Controller
             $Avatar = false;
         }
 
+
+
         $create = [
             'UserID' => $UserID,
             'Active' => $Active,
@@ -151,8 +153,11 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
+        $off_get_data = new Profile();
+        $off_get_data->find($id);
+
         $Profile = Profile::find($id);
-        return view('profile.edit', compact('Profile') + [
+        return view('profile.edit', compact('Profile', '$off_get_data') + [
                 'active_list' => $this->active_list
             ]);
     }

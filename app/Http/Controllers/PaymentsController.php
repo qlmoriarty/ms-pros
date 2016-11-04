@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Traits\CapsuleManagerTrait;
 use Yajra\Datatables\Facades\Datatables;
-
+use Aws;
 
 use App\Http\Requests;
 
@@ -35,18 +35,42 @@ class PaymentsController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function search(Request $request)
-    {
-        $a = strtotime($request->input('Date_From')*1000);
-        $b = strtotime($request->input('Date_To')*1000);
-        $model = new Payments();
+     {
+         $a = $request->input('Date_From');
+//         $b = date("d-m-Y", $a);
+         $newDate = date("d-m-Y", strtotime($a));
+         $dateunix = (string) strval(strtotime($newDate)*1000);
+//         $c = strtotime( $b);
+//         $a = strval($c);
 
-        // $model->where(['key' => 'key value']);
-        // Chainable for 'AND'. 'OR' is not supported.
-        // $model->where('foo', 'bar')
-         $model->where(['DateAdd' => 1477721394620])->get();
+         $b = $request->input('Date_To');
+         $newDate2 = date("d-m-Y",(strtotime($b)));
+         $dateunix2 = (string) strval(strtotime($newDate2)*1000);
 
-        return $model;
-    }
+//         return var_dump($dateunix, $dateunix2);
+
+         $sdk = new Aws\Sdk([
+             'region' => 'us-east-1',
+             'version' => 'latest'
+         ]);
+
+         $dynamodb = $sdk->createDynamoDb();
+         $tableName = 'Payments';
+         $params = [
+             'TableName' => $tableName,
+             'ExpressionAttributeValues' => [
+                 ':datStart' => ['N' => $dateunix],
+                 ':datEnd' => ['N' => $dateunix2]
+             ],
+             'FilterExpression' => 'DateAdd >= :datStart AND DateAdd <= :datEnd'];
+
+        $response = $dynamodb->scan($params);
+         $Data = $response;
+//            return dd($response);
+         return view('payments.index',compact('Data'));
+//         return var_dump($dateunix);
+     }
+
 
     public function index()
     {
@@ -58,11 +82,45 @@ class PaymentsController extends Controller
     }
 
 
-    public function show($id)
+    public function show($id, Request $request)
         {
-//
-//            $Payments = Payments::find($id);
-            $Payments = Payments::all()->where('UserID', $id);
+            $a = $request->input('Date_From');
+            $b = $request->input('Date_To');
+
+        if(isset($a) && isset($b)){
+            $newDate = date("d-m-Y", strtotime($a));
+            $dateunix = (string) strval(strtotime($newDate)*1000);
+
+            $newDate2 = date("d-m-Y",(strtotime($b)));
+            $dateunix2 = (string) strval(strtotime($newDate2)*1000);
+
+            $sdk = new Aws\Sdk([
+                'region' => 'us-east-1',
+                'version' => 'latest'
+            ]);
+
+            $dynamodb = $sdk->createDynamoDb();
+            $tableName = 'Payments';
+            $params = [
+                'TableName' => $tableName,
+                'ExpressionAttributeValues' => [
+                    ':datStart' => ['N' => $dateunix],
+                    ':datEnd' => ['N' => $dateunix2],
+//                    ':datEnd' => ['S' => $id]
+                ],
+                'FilterExpression' => 'DateAdd >= :datStart AND DateAdd <= :datEnd'];
+//                'FilterExpression' => 'DateAdd >= :datStart AND DateAdd <= :datEnd AND UserID == :datUser'];
+
+            $response = $dynamodb->scan($params);
+            $Data = $response;
+        }
+        else
+        {
+            $Data = Payments::all()->sortBy('DateAdd',SORT_ASC);
+        }
+
+
+
 
 //            $data = Payments::all()->where('UserID', $id)
 //                ->all();
@@ -70,7 +128,7 @@ class PaymentsController extends Controller
 //             return $Payments;
 //            return dd($data->find($id));
             // 
-            return view('payments.single', compact('Payments'));
+            return view('payments.index', compact('Data'));
         }
 
     public function ajax()

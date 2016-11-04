@@ -96,16 +96,16 @@
         <section class="sidebar">
             <br>
             <ul class="sidebar-menu">
-                <li><a href="{!! url('/category') !!}"><i class="fa fa-folder-open-o"></i> <span>Categories</span></a></li>
-                <li><a href="{!! url('/profile') !!}"><i class="fa fa-users"></i> <span>Profiles</span></a></li>
+                <li><a href="{!! url('/pushes') !!}"><i class="fa fa-newspaper-o"></i> <span>News</span></a></li>
+                <li><a href="{!! url('/offer') !!}"><i class="fa fa-briefcase"></i> <span>Pros</span></a></li>
                 <li><a href="{!! url('/message') !!}"><i class="fa fa-comments"></i> <span>Messages</span></a></li>
-                <li><a href="{!! url('/offer') !!}"><i class="fa fa-hand-o-right"></i> <span>Offers</span></a></li>
-                <li><a href="{!! url('/user') !!}"><i class="fa fa-user"></i> <span>Users</span></a></li>
-                <li><a href="{!! url('/pushes') !!}"><i class="fa fa-angellist "></i> <span>Pushes</span></a></li>
-                <li><a href="{!! url('/payments') !!}"><i class="fa fa-bank "></i> <span>Payments</span></a></li>
+                <li><a href="{!! url('/profile') !!}"><i class="fa fa-users"></i> <span>Profiles</span></a></li>
 
-
+                <li><a href="{!! url('/payments') !!}"><i class="fa fa-dollar "></i> <span>Payments</span></a></li>
+                <li><a href="{!! url('/category') !!}"><i class="fa fa-folder-open-o"></i> <span>Categories</span></a></li>
                 <li><a href="{!! url('/setting') !!}"><i class="fa fa-sliders"></i> <span>Settings</span></a></li>
+                <li><a href="{!! url('/user') !!}"><i class="fa fa-user"></i> <span>Users</span></a></li>
+
             </ul>
         </section>
         <!-- /.sidebar -->

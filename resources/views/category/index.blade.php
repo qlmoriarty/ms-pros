@@ -21,11 +21,11 @@
                 <table id="user_load" class="table table-clapped table-striped display dataTable no-footer">
                     <thead>
                     <tr role="row">
-                        <th>ID -#</th>
+                        <th>#</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Active</th>
-                        <th>Action</th>
+                        <th style="width: 200px;">Action</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -27,6 +27,7 @@
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
                             {!! Form::label('Avatar', 'Image', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
+<img style="width:200px; height: auto;" src="{{ $off_get_data->ImageUrl }} ">  
                                 {!! Form::file('Avatar', ['class' => 'form-control']) !!}
                                 @if ($errors->has('Avatar'))
                                     <span class="help-block">

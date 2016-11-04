@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('MaxUsers') ? ' has-error' : '' }}">
-                    {!! Form::label('MaxUsers', 'The number of users in a group', ['class' => 'col-md-4 control-label']) !!}
+                    {!! Form::label('MaxUsers', 'The number of pros', ['class' => 'col-md-4 control-label']) !!}
                     <div class="col-md-6">
                         {!! Form::text('MaxUsers', null, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
                         @if ($errors->has('MaxUsers'))

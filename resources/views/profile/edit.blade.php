@@ -26,6 +26,7 @@
                         <div class="form-group{{ $errors->has('Active') ? ' has-error' : '' }}">
                             {!! Form::label('Active', 'Active', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
+
                                 {!! Form::select('Active', $active_list, $Profile->Active, ['class' => 'form-control']) !!}
                                 @if ($errors->has('Active'))
                                     <span class="help-block">
@@ -38,7 +39,8 @@
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
                             {!! Form::label('Avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                @if(!empty($Profile->Avatar))
+                                {{--<img style="width:200px; height: auto;" src="{{ $off_get_data->Avatar }} ">--}}
+                            @if(!empty($Profile->Avatar))
                                     {!! Html::image($Profile->Avatar, null, ['style' => 'max-width: 100px; max-height: 100px;']) !!}
                                 @endif
                                 {!! Form::file('Avatar', ['class' => 'form-control']) !!}

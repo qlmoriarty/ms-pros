@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Payments :: List')
+@section('title', 'All Payments')
 
 @section('content')
     <section class="content">
@@ -10,14 +10,17 @@
             <div class="box-header with-border">
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
+
+
                 {!! Form::open(['action' => ['PaymentsController@search'], 'method' => 'POST', 'class' => 'form-inline']) !!}
-              
-                {!! Form::text('Date_From' , null, ['class' => 'form-control datetimepicker']) !!}
-                {!! Form::text('Date_To' , null, ['class' => 'form-control datetimepicker']) !!}
+                    <p style="display: inline;">Period:  &nbsp </p>
+                {{--{!! Form::text('Date_user_name' , null, ['class' => 'form-control datetimepicker']) !!}--}}
+                {!! Form::text('Date_From' , null, ['class' => 'form-control datetimepicker' , 'id' => 'datefirst']) !!}
+                {!! Form::text('Date_To' , null, ['class' => 'form-control datetimepicker', 'id'=> 'datesecond']) !!}
                  <button type="submit" class="btn btn-primary">
-                                    Search Dates
+                     Load Payments
                                 </button>
-                
+
                 {!! Form::close() !!}
                     {{--{{!!  !!}}--}}
                 
@@ -35,13 +38,10 @@
         
                     <tr role="row">
                            
-                        <th>UserID </th>
-
-                        <th>DateAdd </th>
-                        <th>Subscribe </th>
-
-                        <th>Value</th>
-                  
+                        <th>User mail </th>
+                        <th> Payment date </th>
+                        <th> Subscribe date </th>
+                        <th>Payment value</th>
 
                     </tr>
 
@@ -49,14 +49,16 @@
                     <tbody>
                            {{--@foreach ( App\Payments::all()->sortBy('DateAdd', SORT_ASC) as $d)--}}
                             @foreach( App\Payments::all()->sortBy('DateAdd', SORT_ASC)->all() as $d)
-                                 <tr role="row" class="odd">
-                                 <td class="sorting_1" > <a href="/payments/{{ $d->UserID }}">{{ $d->UserID }}</a>  </td>
-                                 <td>{{  date("d-M-Y H:i:s  ", $d->DateAdd/1000) }}</td>
-{{--       <td>{{ date("jS F Y h:i:s A (T)  ", $d->DateAdd) }} </td>--}}
-                           <td> {{  date("d-M-Y H:i:s  ", $d->Subscribe/1000) }} </td>
-                           <td> {{$d->Value }}</td>
 
-    </td>
+                                 <tr role="row" class="odd">
+
+                                 <td class="sorting_1" > <a href="/payments/{{ $d->UserID }}">{{ $d->UserID }}</a>  </td>
+                                 <td id="payments-date-add">{{  date("d-M-Y H:i:s  ", $d->DateAdd/1000) }}</td>
+{{--       <td>{{ date("jS F Y h:i:s A (T)  ", $d->DateAdd) }} </td>--}}
+                                  <td> {{  date("d-M-Y H:i:s  ", $d->Subscribe/1000) }} </td>
+                                  <td> {{$d->Value }}</td>
+
+                                     </td>
 </tr>
 
 
@@ -76,3 +78,16 @@
     </section>
 @endsection
 
+@push('js.files')
+<script>
+    $(function () {
+
+        $('#datefirst').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+
+
+
+    });
+</script>
+@endpush

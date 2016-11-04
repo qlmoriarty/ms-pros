@@ -57,7 +57,7 @@ class MessageController extends Controller
             ->addColumn('control', function ($data) {
                 $control = [];
 
-                $control[] = '<a href="' . url('/message/' . $data->UserID . '/') . '" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>';
+                $control[] = '<a href="' . url('/message/' . $data->UserID . '/') . '" class="btn btn-info btn-sm"> Chat</a>';
                 $control = implode('&#160;', $control);
 
                 $control = '<div class="control">' . $control . '</div>';

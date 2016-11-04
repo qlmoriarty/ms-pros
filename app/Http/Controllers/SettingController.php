@@ -86,10 +86,12 @@ class SettingController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function del( $id)
     {
-        $Setting = Setting::class;
-        $Setting->where('key', 'key value')->get();
+        $Setting = new Setting();
+        $Setting->find($id);
+//        $Setting = Setting::class;
+//        $Setting->where('key', 'key value')->get();
 //        $Setting = Setting::create([
 //            'Key' => $request->input('Key'),
 //            'Value' => $request->input('Value'),

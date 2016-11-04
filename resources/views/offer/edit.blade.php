@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Offer :: Edit')
+@section('title', 'Pros :: Edit')
 
 @section('content')
     <div class="container">
@@ -64,6 +64,33 @@
                                 @endif
                             </div>
                         </div>
+
+
+			 <div class="form-group{{ $errors->has('Name') ? ' has-error' : '' }}">
+                            {!! Form::label('Busy', 'Busy:', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('Busy', $off_get_data->Busy, ['class' => 'form-control']) !!}
+                                @if ($errors->has('Name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <div class="form-group{{ $errors->has('CatID') ? ' has-error' : '' }}">
                             {!! Form::label('CatID', 'Category id:', ['class' => 'col-md-4 control-label']) !!}

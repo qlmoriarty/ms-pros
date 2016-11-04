@@ -85,7 +85,7 @@ class OfController extends Controller
             'Updated' => (String)Carbon::now()->format('Y-m-d H:i:s'),
             'UserID' => (String)$UserID ,
             'Desc' => (String)$request->input('Desc'),
-            'Images' => (Array)[],
+//            'Images' => (Array)[],
             'Name' => (String)$request->input('Name'),
             'Created' => (String)Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -153,13 +153,13 @@ class OfController extends Controller
             'Updated' => (String)Carbon::now()->format('Y-m-d H:i:s'),
             'UserID' => (String)$UserID ,
             'Desc' => (String)$request->input('Desc'),
-            'Images' => (Array)[],
+//            'Images' => (Array)[],
             'Name' => (String)$request->input('Name'),
             'Created' => (String)Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
 //   return dd((String)$request->input('Desc'));
-        return redirect('/offer')->with('status', 'Offer was Changed!');
+        return redirect('/offer')->with('status', 'Pros was Changed!');
 //        return redirect('ya.ru');
     }
 

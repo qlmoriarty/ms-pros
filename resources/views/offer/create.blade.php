@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Offer :: New')
+@section('title', 'Pros :: New')
 
 @section('content')
     <div class="container">
@@ -46,6 +46,18 @@
                                 @if ($errors->has('Active'))
                                     <span class="help-block">
                                 <strong>{{ $errors->first('Active') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('Busy') ? ' has-error' : '' }}">
+                            {!! Form::label('Busy', 'Busy', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::select('Busy', [ 1 => 'True', 0 => 'False' ], null, ['class' => 'form-control']) !!}
+                                @if ($errors->has('Busy'))
+                                    <span class="help-block">
+                                <strong>{{ $errors->first('Busy') }}</strong>
                             </span>
                                 @endif
                             </div>
