@@ -30,6 +30,10 @@ class OfController extends Controller
     {
         $offer = Offs::all();
         $Data = $offer;
+
+
+
+
         return view('offer.index', compact('Data'));
     }
 
@@ -57,7 +61,18 @@ class OfController extends Controller
             $Active = false;
         }
 
-      $UserID = $request->input('UserID');
+        if ($request->input('Busy') == 1)
+        {
+            $busy = true;
+        }
+        else
+        {
+            $busy = false;
+        }
+
+
+
+        $UserID = $request->input('UserID');
         //        Get Avatar
         if (!empty($request->file('Avatar'))) {
             $Avatar = 'data/avatars/' . $UserID;
@@ -78,7 +93,7 @@ class OfController extends Controller
             'OfferID' => (String)$OfferID,
             'Active' => (Boolean)$request->input('Active'),
             'Avatar' => $Avatar,
-            'Busy' => (Boolean)false,
+            'Busy' => (boolean) $request->input('Busy'),
             'CatID' => (int)$request->input('CatID'),
             'Contact' => (String)$request->input('Contacts'),
             'Cost' => (int)$request->input('Cost'),
@@ -127,6 +142,15 @@ class OfController extends Controller
             $Active = false;
         }
 
+        if ($request->input('Busy') == 1)
+        {
+            $busy = true;
+        }
+        else
+        {
+            $busy = false;
+        }
+
 
         $UserID = $request->input('UserID');
 
@@ -146,7 +170,7 @@ class OfController extends Controller
             'OfferID' => (String)$OfferID,
             'Active' => (Boolean)$request->input('Active'),
             'Avatar' => $Avatar,
-            'Busy' => (Boolean)false,
+            'Busy' => (boolean) $request->input('Busy'),
             'CatID' => (int)$request->input('CatID'),
             'Contact' => (String)$request->input('Contacts'),
             'Cost' => (int)$request->input('Cost'),
@@ -160,6 +184,7 @@ class OfController extends Controller
 
 //   return dd((String)$request->input('Desc'));
         return redirect('/offer')->with('status', 'Pros was Changed!');
+//        return $request->input('Busy');
 //        return redirect('ya.ru');
     }
 

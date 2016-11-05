@@ -39,9 +39,9 @@
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
                             {!! Form::label('Avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {{--<img style="width:200px; height: auto;" src="{{ $off_get_data->Avatar }} ">--}}
+{{--                                <img style="width:200px; height: auto;" src="{{ $off_get_data->Avatar }} ">--}}
                             @if(!empty($Profile->Avatar))
-                                    {!! Html::image($Profile->Avatar, null, ['style' => 'max-width: 100px; max-height: 100px;']) !!}
+                                    {!! Html::image($Profile->Avatar, null, ['style' => 'max-width: 200px; max-height: 200px;']) !!}
                                 @endif
                                 {!! Form::file('Avatar', ['class' => 'form-control']) !!}
                                 @if ($errors->has('Avatar'))

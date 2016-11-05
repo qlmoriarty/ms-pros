@@ -86,10 +86,10 @@ class SettingController extends Controller
 
     }
 
-    public function del( $id)
+    public function del( $key)
     {
         $Setting = new Setting();
-        $Setting->find($id);
+        $Setting->find($key);
 //        $Setting = Setting::class;
 //        $Setting->where('key', 'key value')->get();
 //        $Setting = Setting::create([
@@ -98,6 +98,7 @@ class SettingController extends Controller
 //
 //        ]);
         $Setting->delete();
+//        dd($Setting);
 //        $Setting->save();
         return redirect('/setting')->with('status', 'Setting added!');
 

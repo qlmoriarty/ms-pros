@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('pushes', 'PushController@index');
 
 //        Route::get('settings', 'SettingController@create');
-        Route::get('setting/{id}/delete', 'SettingController@del');
+        Route::get('setting/{key}/delete', 'SettingController@del');
         Route::resource('setting', 'SettingController');
     });
 });

@@ -44,6 +44,9 @@
                         <div class="form-group{{ $errors->has('Avatar') ? ' has-error' : '' }}">
                             {!! Form::label('Avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
+                                {{--@if(!empty($Profile->Avatar))--}}
+                                    {!! Html::image($off_get_data->Avatar, null, ['style' => 'max-width: 200px; max-height: 200px;']) !!}
+                                {{--@endif--}}
                                 {!! Form::file('Avatar' , ['class' => 'form-control']) !!}
                                 @if ($errors->has('Avatar'))
                                     <span class="help-block">
@@ -52,6 +55,9 @@
                                 @endif
                             </div>
                         </div>
+
+
+
                         {{--Name--}}
                         <div class="form-group{{ $errors->has('Name') ? ' has-error' : '' }}">
                             {!! Form::label('Name', 'Offer Name', ['class' => 'col-md-4 control-label']) !!}
@@ -66,14 +72,14 @@
                         </div>
 
 
-			 <div class="form-group{{ $errors->has('Name') ? ' has-error' : '' }}">
-                            {!! Form::label('Busy', 'Busy:', ['class' => 'col-md-4 control-label']) !!}
+                        <div class="form-group{{ $errors->has('Busy') ? ' has-error' : '' }}">
+                            {!! Form::label('Busy', 'Busy', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('Busy', $off_get_data->Busy, ['class' => 'form-control']) !!}
-                                @if ($errors->has('Name'))
+                                {!! Form::select('Busy', [ 1 => 'True', 0 => 'False' ], $off_get_data->busy, ['class' => 'form-control']) !!}
+                                @if ($errors->has('Busy'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Name') }}</strong>
-                                    </span>
+                                <strong>{{ $errors->first('Busy') }}</strong>
+                            </span>
                                 @endif
                             </div>
                         </div>

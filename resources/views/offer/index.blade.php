@@ -45,7 +45,17 @@
                             <td>{{ $d->CatID }} </td>
                             <td> {{ $d->UserID }}</td>
                             <td> {{$d->Name}}</td>
-                            <td>{{$d->Busy}}</td>
+                            <td> <?php
+                                if($d->Active == 1)
+                                {
+                                    echo "true";
+                                }
+                                else
+                                {
+                                    echo "false";
+                                }
+
+                                ?></td>
                             <td>{{$d->Contact}}</td>
                             <td> {{$d->Desc}}</td>
                             <td>

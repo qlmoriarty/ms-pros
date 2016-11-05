@@ -44,10 +44,11 @@
 
                             <td> {{$d->Value }}</td>
                             <td>
-                                <a href="/setting/{id}/delete" class="btn btn-danger btn-sm" >
+                                <a href="/setting/{{$d->Key}}/delete" class="btn btn-danger btn-sm" >
                                     <i class="fa fa-trash"></i>
                                 </a>
-                                <a href="" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>
+                                {{--<a href="/setting/{{$d->Key}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>--}}
+                                <a href="/setting/create" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>
                             </td>
 
                             </td>
