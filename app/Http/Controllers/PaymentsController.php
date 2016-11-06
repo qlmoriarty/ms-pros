@@ -74,36 +74,71 @@ class PaymentsController extends Controller
      */
     public function searchUser(Request $request, $userID)
     {
-        $a = $request->input('Date_From');
-        $newDate = date("d-m-Y", strtotime($a));
-        $dateunix = (string) strval(strtotime($newDate)*1000);
+        if (isset($a) && isset($b)){
+            $a = $request->input('Date_From');
+            $newDate = date("d-m-Y", strtotime($a));
+            $dateunix = (string) strval(strtotime($newDate)*1000);
 
 
-        $b = $request->input('Date_To');
-        $newDate2 = date("d-m-Y",(strtotime($b)));
-        $dateunix2 = (string) strval(strtotime($newDate2)*1000);
+            $b = $request->input('Date_To');
+            $newDate2 = date("d-m-Y",(strtotime($b)));
+            $dateunix2 = (string) strval(strtotime($newDate2)*1000);
 
 
 
-        $sdk = new Aws\Sdk([
-            'region' => 'us-east-1',
-            'version' => 'latest'
-        ]);
+            $sdk = new Aws\Sdk([
+                'region' => 'us-east-1',
+                'version' => 'latest'
+            ]);
 
-        $dynamodb = $sdk->createDynamoDb();
-        $tableName = 'Payments';
-        $params = [
-            'TableName' => $tableName,
-            'ExpressionAttributeValues' => [
+            $dynamodb = $sdk->createDynamoDb();
+            $tableName = 'Payments';
+            $params = [
+                'TableName' => $tableName,
+                'ExpressionAttributeValues' => [
 //                ':datStart' => ['N' => $dateunix],
-                ':UserID' => ['S' => $userID],
+                    ':UserID' => ['S' => $userID],
 //                ':datEnd' => ['N' => $dateunix2]
-            ],
-            'FilterExpression' => ' UserID = :UserID'];
+                ],
+                'FilterExpression' => 'DateAdd >= :datStart AND DateAdd <= :datEnd AND UserID = :UserID'];
 
-        $response = $dynamodb->scan($params);
+            $response = $dynamodb->scan($params);
 //        $title = 'All Payments for ' . $userID;
-        return view('payments.search',compact('response'));
+            return view('payments.single',compact('response', 'userID'));
+        }else
+        {
+            $a = $request->input('Date_From');
+            $newDate = date("d-m-Y", strtotime($a));
+            $dateunix = (string) strval(strtotime($newDate)*1000);
+
+
+            $b = $request->input('Date_To');
+            $newDate2 = date("d-m-Y",(strtotime($b)));
+            $dateunix2 = (string) strval(strtotime($newDate2)*1000);
+
+
+
+            $sdk = new Aws\Sdk([
+                'region' => 'us-east-1',
+                'version' => 'latest'
+            ]);
+
+            $dynamodb = $sdk->createDynamoDb();
+            $tableName = 'Payments';
+            $params = [
+                'TableName' => $tableName,
+                'ExpressionAttributeValues' => [
+//                ':datStart' => ['N' => $dateunix],
+                    ':UserID' => ['S' => $userID],
+//                ':datEnd' => ['N' => $dateunix2]
+                ],
+                'FilterExpression' => ' UserID = :UserID'];
+
+            $response = $dynamodb->scan($params);
+//        $title = 'All Payments for ' . $userID;
+            return view('payments.single',compact('response', 'userID'));
+        }
+
 
     }
 

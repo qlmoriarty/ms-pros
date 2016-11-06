@@ -13,7 +13,6 @@
                 <h3 class="box-title">@yield('title')</h3>
                 <div class="box-tools pull-right">
 
-
                     {!! Form::open(['action' => ['PaymentsController@search'], 'method' => 'POST', 'class' => 'form-inline']) !!}
                     <p style="display: inline;">Period:  &nbsp </p>
                     {{--{!! Form::text('Date_user_name' , null, ['class' => 'form-control datetimepicker']) !!}--}}
