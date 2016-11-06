@@ -117,9 +117,7 @@ class PushController extends Controller
 
     public function del($id, $date)
     {
-//            $date = $date;
-//            return dd($date,$id);
-//        $DATE = '2016-11-02 13:38:45';
+
 //
         $off_get_data = new Push();
         $off_get_data->find(['NewsID' => (string)$id, 'DateAdd' => $date]);

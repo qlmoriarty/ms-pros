@@ -53,7 +53,7 @@ class ProfileController extends Controller
             })
             ->addColumn('control', function ($data) {
                 $control = [];
-                $control[] = '<a href="' . url('/payments/' . $data->UserID . '') . '" class="btn btn-info btn-sm"><i class="fa fa-dollar "></i></a>';
+                $control[] = '<a href="' . url('/payments/' . $data->UserID . '/search') . '" class="btn btn-info btn-sm"><i class="fa fa-dollar "></i></a>';
                 $control[] = '<a href="' . url('/profile/' . $data->UserID . '/edit') . '" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>';
                 $control[] = '<a href="#" class="btn btn-danger btn-sm item_destroy" data-url="' . url('/profile/' . $data->UserID) . '"><i class="fa fa-trash"></i></a>';
                 $control = implode('&#160;', $control);

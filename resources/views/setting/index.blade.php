@@ -44,7 +44,7 @@
 
                             <td> {{$d->Value }}</td>
                             <td>
-                                <a href="/setting/{{$d->Key}}/delete" class="btn btn-danger btn-sm" >
+                                <a href="/setting/{{$d->Key}}/delete"  class="btn btn-danger btn-sm bolt" >
                                     <i class="fa fa-trash"></i>
                                 </a>
                                 {{--<a href="/setting/{{$d->Key}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>--}}
@@ -62,3 +62,18 @@
     </section>
 @endsection
 
+
+@push('js.files')
+<script>
+
+    $(function () {
+
+        $('.bolt').click(function(){
+            return confirm('Delete ?');
+
+        });
+
+
+    });
+</script>
+@endpush

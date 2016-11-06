@@ -6,6 +6,7 @@ namespace App;
 use BaoPham\DynamoDb\DynamoDbModel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Library;
 
 class Push extends DynamoDbModel
 {

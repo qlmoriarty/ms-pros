@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Traits\CapsuleManagerTrait;
 use Yajra\Datatables\Facades\Datatables;
 use Aws;
+use App\Library\CustomDateFunctions;
 
 use App\Http\Requests;
 
@@ -37,17 +38,15 @@ class PaymentsController extends Controller
      public function search(Request $request)
      {
          $a = $request->input('Date_From');
-//         $b = date("d-m-Y", $a);
          $newDate = date("d-m-Y", strtotime($a));
          $dateunix = (string) strval(strtotime($newDate)*1000);
-//         $c = strtotime( $b);
-//         $a = strval($c);
+
 
          $b = $request->input('Date_To');
          $newDate2 = date("d-m-Y",(strtotime($b)));
          $dateunix2 = (string) strval(strtotime($newDate2)*1000);
 
-//         return var_dump($dateunix, $dateunix2);
+
 
          $sdk = new Aws\Sdk([
              'region' => 'us-east-1',
@@ -65,11 +64,48 @@ class PaymentsController extends Controller
              'FilterExpression' => 'DateAdd >= :datStart AND DateAdd <= :datEnd'];
 
         $response = $dynamodb->scan($params);
-         $Data = $response;
-//            return dd($response);
-         return view('payments.index',compact('Data'));
-//         return var_dump($dateunix);
+
+         return view('payments.search',compact('response'));
+
      }
+
+    /**
+     * @return array
+     */
+    public function searchUser(Request $request, $userID)
+    {
+        $a = $request->input('Date_From');
+        $newDate = date("d-m-Y", strtotime($a));
+        $dateunix = (string) strval(strtotime($newDate)*1000);
+
+
+        $b = $request->input('Date_To');
+        $newDate2 = date("d-m-Y",(strtotime($b)));
+        $dateunix2 = (string) strval(strtotime($newDate2)*1000);
+
+
+
+        $sdk = new Aws\Sdk([
+            'region' => 'us-east-1',
+            'version' => 'latest'
+        ]);
+
+        $dynamodb = $sdk->createDynamoDb();
+        $tableName = 'Payments';
+        $params = [
+            'TableName' => $tableName,
+            'ExpressionAttributeValues' => [
+//                ':datStart' => ['N' => $dateunix],
+                ':UserID' => ['S' => $userID],
+//                ':datEnd' => ['N' => $dateunix2]
+            ],
+            'FilterExpression' => ' UserID = :UserID'];
+
+        $response = $dynamodb->scan($params);
+//        $title = 'All Payments for ' . $userID;
+        return view('payments.search',compact('response'));
+
+    }
 
 
     public function index()

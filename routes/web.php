@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/payments/ajax', 'PaymentsController@ajax');
         Route::post('/payments/search', 'PaymentsController@search');
+        Route::get('/payments/{userID}/search', 'PaymentsController@searchUser');
 
         Route::resource('payments', 'PaymentsController');
 

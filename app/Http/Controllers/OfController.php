@@ -87,7 +87,6 @@ class OfController extends Controller
       $uniqid = uniqid();
       $OfferID = $uniqid;
 
-//        $Offer = new Offs();
 
       $Offer = Offs::create([
             'OfferID' => (String)$OfferID,

@@ -38,10 +38,10 @@
                             
                          <tr role="row" class="odd">
                              <td class="sorting_1" ><img style="width:200px; height: auto;" src="{{ $d->ImageUrl }} ">  </td>
-                            {{--<td> {{ $d->NewsID }} </td>--}}
 
-{{--                             <td> {{  date("Y-m-d H:i:s  ", ($d->DateAdd)*1000) }}</td>--}}
-                            <td> {{ $d->DateAdd }}</td>
+                            {{--<td> {{   date("Y-m-d H:i:s ",strtotime($d->DateAdd))  }}</td>--}}
+                            <td> {{   date("Y-m-d H:i:s ",strtotime($d->DateAdd))  }}</td>
+
                             <td> {{ $d->Title }}</td>
                             <td style="width: 200px;"> {{ $d->Text }}</td>
                              <td>
