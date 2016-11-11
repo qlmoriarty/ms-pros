@@ -48,7 +48,9 @@
                                     <i class="fa fa-trash"></i>
                                 </a>
                                 {{--<a href="/setting/{{$d->Key}}/edit" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>--}}
-                                <a href="/setting/create" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i></a>
+                                <a href="/setting/{{$d->Key}}/edit" class="btn btn-info btn-sm">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
                             </td>
 
                             </td>

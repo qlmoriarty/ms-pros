@@ -24,7 +24,7 @@
                     <thead>
                     <tr role="row">
                         <th>Image</th>
-                        <th>CategoryID</th>
+                        <th>Subcategory</th>
                         <th>User email</th>
                         <th>Name</th>
                         <th>Busy</th>

@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 //        Route::resource('offer', 'OffsController');
 
         Route::get('offer/{id}/delete', 'OfController@del');
+        Route::get('offer/get', 'OfController@getgata');
         Route::resource('offer', 'OfController');
 
         Route::get('/payments/ajax', 'PaymentsController@ajax');

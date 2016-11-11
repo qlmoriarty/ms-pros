@@ -195,6 +195,8 @@ class CategoryController extends Controller
         }
 
         $category = $class::find((int)$id);
+//        $category = new Category();
+//        $category->find((int)$id);
         return view('category.edit', compact('category') + [
                 'SubCategoryIs' => $SubCategoryIs,
                 'category_list' => $Category,

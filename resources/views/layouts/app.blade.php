@@ -104,7 +104,7 @@
                 <li><a href="{!! url('/payments') !!}"><i class="fa fa-dollar "></i> <span>Payments</span></a></li>
                 <li><a href="{!! url('/category') !!}"><i class="fa fa-folder-open-o"></i> <span>Categories</span></a></li>
                 <li><a href="{!! url('/setting') !!}"><i class="fa fa-sliders"></i> <span>Settings</span></a></li>
-                <li><a href="{!! url('/user') !!}"><i class="fa fa-user"></i> <span>Users</span></a></li>
+                <li><a href="{!! url('/user') !!}"><i class="fa fa-user"></i> <span>Managers</span></a></li>
 
             </ul>
         </section>

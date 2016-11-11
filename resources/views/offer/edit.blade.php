@@ -11,6 +11,58 @@
                     <div class="panel-body">
                         {!! Form::open(['action' => ['OfController@update', $id], 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true]) !!}
 
+                        <div class="form-group">
+                            <label for="CatID" class="col-md-4 control-label">Subcategory</label>
+                            <div class="col-md-6">
+                               
+
+                                <select class="form-control" id="CatID" name="CatID">
+                                    <option value="{{ $get_sub->SubCatsID }}">
+                                        @if  ( $get_sub->ParentCatID === 1)
+
+                                            Lawyer
+                                            &nbsp;&nbsp; - &nbsp;&nbsp;
+                                        @elseif($get_sub->ParentCatID===2)
+
+                                            Plumber
+                                            &nbsp;- &nbsp;&nbsp;
+                                        @elseif($get_sub->ParentCatID===20)
+
+                                            Promo
+                                            &nbsp;&nbsp; - &nbsp;&nbsp;
+                                        @elseif($get_sub->ParentCatID===3)
+
+                                            Personal Trainer
+                                            &nbsp;&nbsp; - &nbsp;&nbsp;
+                                        @endif
+                                        {{ $get_sub->Name }}
+                                    </option>
+
+                                    @foreach($get_subcuts->sortBy('ParentCatID') as $sub)
+                                        <option value="{{ $sub->SubCatsID }}">
+                                            @if  ( $sub->ParentCatID === 1)
+
+                                                Lawyer
+                                                &nbsp;&nbsp; - &nbsp;&nbsp;
+                                            @elseif($sub->ParentCatID===2)
+
+                                                Plumber
+                                                &nbsp;- &nbsp;&nbsp;
+                                            @elseif($sub->ParentCatID===20)
+
+                                                Promo
+                                                &nbsp;&nbsp; - &nbsp;&nbsp;
+                                            @elseif($sub->ParentCatID===3)
+
+                                                Personal Trainer
+                                                &nbsp;&nbsp; - &nbsp;&nbsp;
+                                            @endif
+                                                {{ $sub->Name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         {{--UserID--}}
                         <div class="form-group{{ $errors->has('UserID') ? ' has-error' : '' }}">
@@ -98,17 +150,17 @@
 
 
 
-                        <div class="form-group{{ $errors->has('CatID') ? ' has-error' : '' }}">
-                            {!! Form::label('CatID', 'Category id:', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('CatID',  $off_get_data->CatID, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
-                                @if ($errors->has('CatID'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('CatID') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        {{--<div class="form-group{{ $errors->has('CatID') ? ' has-error' : '' }}">--}}
+                            {{--{!! Form::label('CatID', 'Category id:', ['class' => 'col-md-4 control-label']) !!}--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--{!! Form::text('CatID',  $off_get_data->CatID, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}--}}
+                                {{--@if ($errors->has('CatID'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('CatID') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         {{--Contacts--}}
                         <div class="form-group{{ $errors->has('Contacts') ? ' has-error' : '' }}">

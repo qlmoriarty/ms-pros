@@ -40,12 +40,7 @@ class SettingController extends Controller
 //            ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
 //    public function store(Request $request)
 //    {
 //
@@ -59,6 +54,25 @@ class SettingController extends Controller
 //
 //        return redirect('/setting')->with('status', 'Settings updated!');
 //    }
+    public function edit($key)
+    {
+        $Setting = new Setting();
+        $Setting->find($key);
+        $data  = $Setting;
+        return view('setting.edit', compact('data'));
+    }
+
+    public function update(Request $request)
+    {   $key = $request->input('Key');
+
+        $settings = new Setting();
+        $settings->find($key);
+        $settings->update([
+            'Key' => $key,
+            'Value' => $request->input('Value')
+        ]);
+        return redirect('/setting')->with('status', 'Setting was changed!');
+    }
 
     public function create()
     {

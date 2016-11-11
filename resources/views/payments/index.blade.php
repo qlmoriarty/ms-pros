@@ -52,8 +52,8 @@
 
                                  <tr role="row" class="odd">
 
-                                 <td class="sorting_1" > <a href="/payments/{{ $d->UserID }}/search">{{ $d->UserID }}</a>  </td>
-                                 <td id="payments-date-add">{{  date("Y-M-D H:i:s  ", $d->DateAdd/1000) }}</td>
+                                 <td class="sorting_1" ><a href="/payments/{{ $d->UserID }}/search"> {{$d->UserID}}</a>  </td>
+                                 <td id="payments-date-add">{{  date("Y-m-d H:i:s  ", $d->DateAdd/1000) }}</td>
 {{--       <td>{{ date("jS F Y h:i:s A (T)  ", $d->DateAdd) }} </td>--}}
                                   <td> {{  date("Y-m-d H:i:s  ", $d->Subscribe/1000) }} </td>
                                   <td> {{$d->Value }}</td>

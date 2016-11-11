@@ -55,10 +55,18 @@
                     foreach ($response['Items'] as $key => $value) { ?>
                         <tr role="row" class="odd">
 
-                            <td class="sorting_1" > <a href="/payments/<?php echo   $value['UserID']['S'] . "<br>"; ?>"><?php echo   $value['UserID']['S'] . "<br>"; ?></a>  </td>
-                            <td id="payments-date-add"><?php echo  date("Y-m-d H:m:s" , $value['DateAdd']['N']/1000) . "<br>"; ?></td>
-                            <td> <?php echo  date("Y-m-d H:m:s" , $value['Subscribe']['N']/1000) . "<br>"; ?> </td>
-                            <td> <?php echo   $value['Value']['N'] . "<br>"; ?></td>
+                            <td class="sorting_1" >
+                                <a href="/payments/<?php echo $value['UserID']['S'];?>/search">
+                                    <?php echo $value['UserID']['S'];?>
+                                </a>
+                            </td>
+                            <td id="payments-date-add">
+                                <?php echo  date("Y-m-d H:m:s" , $value['DateAdd']['N']/1000); ?>
+                            </td>
+                            <td>
+                                <?php echo  date("Y-m-d H:m:s" , $value['Subscribe']['N']/1000); ?>
+                            </td>
+                            <td> <?php echo  $value['Value']['N']; ?></td>
 
                             </td>
                         </tr>

@@ -122,11 +122,12 @@ class ProfileController extends Controller
             'Active' => $Active,
             'Avatar' => $Avatar,
             'Contacts' => $request->input('Contacts'),
-            'Created' => Carbon::now()->format('Y-m-d\TH:i:s\Z'),
+            'Created' => (String)Carbon::now()->format('Y-m-d H:i:s'),
             'Description' => $request->input('Description'),
             'NickName' => $request->input('NickName'),
-            'Subscribe' => (!empty($Subscribe)) ? Carbon::parse($Subscribe)->format('Y-m-d\TH:i:s\Z') : false,
-            'Updated' => false
+            'Subscribe' => (String)Carbon::now()->format('Y-m-d H:i:s'),
+//            'Subscribe' => (!empty($Subscribe)) ? Carbon::parse($Subscribe)->format('Y-m-d\TH:i:s\Z') : false,
+            'Updated' =>(String)Carbon::now()->format('Y-m-d H:i:s')
         ];
         //print 'FILE: ' . __FILE__ . ' | LINE: ' . __LINE__ . ' | $create = <pre>' . print_r($create, true) . "</pre><br>\n";exit;
         $Profile = Profile::create($create);
@@ -204,11 +205,13 @@ class ProfileController extends Controller
 
             $Profile->Avatar = $this->http_avatar . $path;
         }
+        $Profile->Created = (String)Carbon::now()->format('Y-m-d H:i:s');
         $Profile->Contacts = $request->input('Contacts');
         $Profile->Description = $request->input('Description');
         $Profile->NickName = $request->input('NickName');
-        $Profile->Subscribe = (!empty($Subscribe)) ? Carbon::parse($Subscribe)->format('Y-m-d\TH:i:s\Z') : false;
-        $Profile->Updated = Carbon::now()->format('Y-m-d\TH:i:s\Z');
+        $Profile->Subscribe = (String)Carbon::now()->format('Y-m-d H:i:s');
+        $Profile->Updated = (String)Carbon::now()->format('Y-m-d H:i:s');
+//        $Profile->Updated = Carbon::now()->format('Y-m-d\TH:i:s\Z');
         //print 'FILE: ' . __FILE__ . ' | LINE: ' . __LINE__ . ' | $Profile-> = <pre>' . print_r($Profile->toArray(), true) . "</pre><br>\n";exit;
 
         $Profile->save();

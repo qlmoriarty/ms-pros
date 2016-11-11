@@ -63,22 +63,53 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('Active') ? ' has-error' : '' }}">
-                    {!! Form::label('Active', 'Active', ['class' => 'col-md-4 control-label']) !!}
-                    <div class="col-md-6">
-                        {!! Form::select('Active', $active_list, $category->Active, ['class' => 'form-control']) !!}
-                        @if ($errors->has('Active'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('Active') }}</strong>
-                            </span>
-                        @endif
+
+
+
+
+                @if($category->Active == 1)
+                    <div class="form-group">
+                        <label for="Active" class="col-md-4 control-label">Active</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="Active" name="Active">
+                                <option value="true" selected="selected">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                @else
+
+                    <div class="form-group">
+                        <label for="Active" class="col-md-4 control-label">Active</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="Active" name="Active">
+                                <option value="true">Yes</option>
+                                <option value="false" selected="selected">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                @endif
+
+
+
+
+                {{--<div class="form-group{{ $errors->has('Active') ? ' has-error' : '' }}">--}}
+                    {{--{!! Form::label('Active', 'Active', ['class' => 'col-md-4 control-label']) !!}--}}
+                    {{--<div class="col-md-6">--}}
+                        {{--{!! Form::select('Active', $active_list, [0 => $category->Active , 1 => $category->Active], ['class' => 'form-control']) !!}--}}
+                        {{--@if ($errors->has('Active'))--}}
+                            {{--<span class="help-block">--}}
+                                {{--<strong>{{ $errors->first('Active') }}</strong>--}}
+                            {{--</span>--}}
+                        {{--@endif--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="form-group{{ $errors->has('MaxUsers') ? ' has-error' : '' }}">
                     {!! Form::label('MaxUsers', 'The number of pros', ['class' => 'col-md-4 control-label']) !!}
                     <div class="col-md-6">
-                        {!! Form::text('MaxUsers', null, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
+                        {!! Form::text('MaxUsers', $category->MaxUsers, ['class' => 'form-control', 'required' => 'true', 'autofocus' => 'true']) !!}
                         @if ($errors->has('MaxUsers'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('MaxUsers') }}</strong>

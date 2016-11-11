@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 // use App\Http\Requests;
 use App\Constant\UniversalConstant;
 use Carbon\Carbon;
+use App\SubCategory;
 use Illuminate\Support\Facades\Storage;
 //use Illuminate\Support\Facades\Validator;
 //use Illuminate\Support\Traits\CapsuleManagerTrait;
@@ -43,10 +44,13 @@ class OfController extends Controller
 
     public function create()
     {
-//        return dd($this->active_list);
-        return view('offer.create', [
+        $active_list = [
             'active_list' => $this->active_list
-        ]);
+        ];
+        $get_subcuts = SubCategory::all();
+
+//        return dd($this->active_list);
+        return view('offer.create',compact('get_subcuts'),$active_list );
     }
 
     public function store(Request $request)
@@ -117,18 +121,28 @@ class OfController extends Controller
 
     public function edit($id)
     {
+
         $off_get_data = new Offs();
         $off_get_data->find($id);
+
+        $newId =  $off_get_data->CatID ;
+
+        $get_subcuts = SubCategory::all();
+        $get_sub = new SubCategory();
+        $get_sub->find($newId);
+
+//        return  $get_subcuts;
 //        dd($off_get_data);
 //        $id = $this->$id;
 
 //        return redirect('http://ya.ru');
-        return view('offer.edit', compact('id','off_get_data') );
+        return view('offer.edit', compact('id','off_get_data' ,'get_subcuts', 'get_sub') );
 
     }
     public function update($id, Request $request)
     {
         $off_get_data = new Offs();
+
         $off_get_data->find($id);
         $Offer = new Offs();
 
@@ -195,5 +209,11 @@ class OfController extends Controller
         return redirect('/offer');
     }
 
+
+    public function getgata()
+    {
+        $off = Offs::all();
+        return $off;
+    }
 
 }
